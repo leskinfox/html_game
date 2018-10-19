@@ -16,14 +16,14 @@ public class DBService {
         StringBuilder url = new StringBuilder();
         url.
                 append("jdbc:mysql://").
-                append("onnjomlc4vqc55fw.chr7pe7iynqr.eu-west-1.rds.amazonaws.com:").
+                append("localhost:").
                 append("3306/").
-                append("g7rnv7p046ohog3h?").
+                append("html_game?").
                 append("useSSL=false&").
                 append("serverTimezone=UTC");
         Properties properties = new Properties();
-        properties.setProperty("user", "iqp5nvxekkxqid4a");
-        properties.setProperty("password", "qob87m4m2xxfngs0");
+        properties.setProperty("user", "root");
+        properties.setProperty("password", "");
         properties.setProperty("autoReconnect", "true");
         properties.setProperty("connectTimeout", "1000");
         properties.setProperty("socketTimeout", "1000");
