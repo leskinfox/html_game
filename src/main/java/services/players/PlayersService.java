@@ -25,7 +25,7 @@ public class PlayersService {
 
     public boolean searchEnemy(Player player) {
         for(Player enemy : players.values())
-            if (enemy.call(player))
+            if (!enemy.getName().equals(player.getName()) && enemy.call(player))
                 return true;
         return false;
     }

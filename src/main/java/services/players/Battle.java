@@ -2,7 +2,7 @@ package services.players;
 
 public class Battle {
     private final long MAX_GAME_TIME = 10 * 60 * 1000;
-    private final long WAIT_TIME = 5 * 1000;
+    private final long WAIT_TIME = 30 * 1000;
 
     private long timeStartBattle;
 
@@ -10,6 +10,7 @@ public class Battle {
     private Player[] player = new Player[2];
     private long[] rating = new long[2];
     private String[] name = new String[2];
+    private long[] life = new long[2];
     private long[] health = new long[2];
     private long[] damage = new long[2];
     private boolean[] fExit = new boolean[2];
@@ -19,6 +20,7 @@ public class Battle {
         player[0] = player1; player[1] = player2;
         rating[0] = player1.getRating(); rating[1] = player2.getRating();
         name[0] = player1.getName(); name[1] = player2.getName();
+        life[0] = player1.getLife(); life[1] = player2.getLife();
         health[0] = player1.getLife(); health[1] = player2.getLife();
         damage[0] = player1.getDamage(); damage[1] = player2.getDamage();
         fExit[0] = false; fExit[1] = false;
@@ -50,9 +52,9 @@ public class Battle {
             return;
         }
         takeAttack(id2);
-        log[id] += "<br>Вы ударили" + name[id2] + "на " + damage[id] + "урона";
+        log[id] += "<br>Вы ударили " + name[id2] + " на " + damage[id] + " урона";
         if (isDead(id2)) {
-            log[id] += "<br>Вы убили" + name[id2];
+            log[id] += "<br>Вы убили " + name[id2];
             win(id);
         }
     }
@@ -85,6 +87,10 @@ public class Battle {
         return name[id];
     }
 
+    public long getMyLife(int id) {
+        return life[id];
+    }
+
     public long getMyHealth(int id) {
         return health[id];
     }
@@ -100,6 +106,11 @@ public class Battle {
     public long getEnemyRating(int id) {
         id = id == 0 ? 1 : 0;
         return rating[id];
+    }
+
+    public long getEnemyLife(int id) {
+        id = id == 0 ? 1 : 0;
+        return life[id];
     }
 
     public String getEnemyName(int id) {

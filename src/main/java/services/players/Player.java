@@ -103,6 +103,10 @@ public class Player {
         return idInBattle;
     }
 
+    public String getSessionId() {
+        return sessionId;
+    }
+
     private void save() {
         try {
             dbService.updateUser(sessionId, name, rating, life, damage);

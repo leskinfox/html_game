@@ -5,6 +5,7 @@ import services.statistics.StatisticsService;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 public class DBService {
     private final Connection connection;
@@ -22,8 +23,15 @@ public class DBService {
                 append("password=&").                     //password
                 append("useSSL=false&").
                 append("serverTimezone=UTC");
-        System.out.println("URL: " + url + "\n");
-        connection = DriverManager.getConnection(url.toString());
+        Properties properties = new Properties();
+        properties.setProperty("user", "root");
+        properties.setProperty("password", "");
+        properties.setProperty("autoReconnect", "true");
+        properties.setProperty("connectTimeout", "1000");
+        properties.setProperty("socketTimeout", "1000");
+        properties.setProperty("maxReconnects", "1");
+        properties.setProperty("retriesAllDown", "1");
+        connection = DriverManager.getConnection(url.toString(), properties);
         UsersDAO dao = new UsersDAO(connection);
         dao.createTable();
     }

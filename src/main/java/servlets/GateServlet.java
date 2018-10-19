@@ -27,11 +27,12 @@ public class GateServlet extends HttpServlet {
         services.statistics.startPageTimer(sessionId);
         Player player = services.players.get(sessionId);
         String page;
+        resp.setCharacterEncoding("UTF-8");
         if (player == null) {
             resp.sendRedirect("/");
         }
         player.exit();
-        for (int i = 0; i<1000; i++) {
+        for (int i = 0; i<300; i++) {
             long startTime = System.currentTimeMillis();
             player.setReady(true);
             while(System.currentTimeMillis()-startTime < 10 && player.isReady());
@@ -45,13 +46,24 @@ public class GateServlet extends HttpServlet {
             Map<String, String> params = new HashMap<>();
             Battle battle = player.getBattle();
             int playerId = player.getIdInBattle();
-            params.put("enemy_name", battle.getEnemyName(playerId));
-            page = services.template.getPage(sessionId,"wait.html", params);
+            page = services.template.getPage(sessionId,"wait.html", getParams(battle, playerId));
         }
         else
-            page = "Нет пользователей попробуйте позже";
-        resp.setCharacterEncoding("UTF-8");
+            page = services.template.getPage(sessionId,"not_found.html", new HashMap<>());
         resp.getWriter().println(page);
         resp.setStatus(HttpServletResponse.SC_OK);
     }
+
+    private HashMap<String, String> getParams (Battle battle, int playerId) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("enemy_name", battle.getEnemyName(playerId));
+        params.put("my_name", battle.getMyName(playerId));
+        params.put("my_life", Long.toString(battle.getMyLife(playerId)));
+        params.put("my_damage", Long.toString(battle.getMyDamage(playerId)));
+        params.put("my_rating", Long.toString(battle.getMyRating(playerId)));
+        params.put("his_name", battle.getEnemyName(playerId));
+        params.put("his_rating", Long.toString(battle.getEnemyRating(playerId)));
+        return params;
+    }
 }
+

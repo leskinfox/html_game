@@ -2,7 +2,9 @@ package main;
 
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.server.handler.ContextHandler;
 import org.eclipse.jetty.server.handler.HandlerList;
+import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import services.Services;
@@ -27,8 +29,17 @@ public class Main {
         context.addServlet(new ServletHolder(gateServlet), "/gate");
         context.addServlet(new ServletHolder(duelServlet), "/duel");
 
+        ResourceHandler resourceHandler = new ResourceHandler();
+        resourceHandler.setResourceBase("public");
+        resourceHandler.setDirectoriesListed(false);
+        ContextHandler context2 = new ContextHandler("/public");
+        context2.setHandler(resourceHandler);
+
+
+
+
         HandlerList handlers = new HandlerList();
-        handlers.setHandlers(new Handler[]{context});
+        handlers.setHandlers(new Handler[]{context2, context});
 
         Server server = new Server(8080);
         server.setHandler(handlers);

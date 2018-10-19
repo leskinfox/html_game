@@ -28,9 +28,7 @@ public class SignOutServlet extends HttpServlet {
             player.exit();
             services.players.remove(sessionId);
         }
-        String page = services.template.getPage(sessionId, "signin.html", new HashMap<>());
-        resp.setCharacterEncoding("UTF-8");
-        resp.getWriter().println(page);
+        resp.sendRedirect("/");
         resp.setStatus(HttpServletResponse.SC_OK);
     }
 

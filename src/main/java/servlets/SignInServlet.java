@@ -39,8 +39,9 @@ public class SignInServlet extends HttpServlet {
             resp.setStatus(HttpServletResponse.SC_OK);
             return;
         }
+
         long beginTime = System.currentTimeMillis();
-        String page = services.template.getPage(sessionId, "signin.html", new HashMap<>());
+        String page = services.template.getPage(sessionId, "signin.html", getParams(""));
         resp.getWriter().println(page);
         resp.setStatus(HttpServletResponse.SC_OK);
     }
@@ -64,11 +65,13 @@ public class SignInServlet extends HttpServlet {
             e.printStackTrace();
         }
         if (user == null) {
-            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            resp.sendRedirect("/");
             return;
         }
         if (!user.getPassword().equals(password)) {
-            resp.getWriter().println("Ошибка авторизации");
+            String page = services.template.getPage(sessionId, "signin.html",
+                    getParams("Неверный пароль"));
+            resp.getWriter().println(page);
             resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             return;
         }
@@ -77,5 +80,11 @@ public class SignInServlet extends HttpServlet {
         String page = services.template.getPage(sessionId, "menu.html", new HashMap<>());
         resp.getWriter().println(page);
         resp.setStatus(HttpServletResponse.SC_OK);
+    }
+
+    private HashMap<String, String> getParams (String msg) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("msg", msg);
+        return params;
     }
 }

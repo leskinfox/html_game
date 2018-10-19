@@ -1,0 +1,82 @@
+
+body {
+    font-family: "arial";
+    background: #fbdbaa;
+    color: #000000;
+}
+#container {
+    width: 500px;
+    margin: 0 auto;
+    background: #f69b22;
+}
+#header {
+    font-size: 3em;
+    color: #ffffff;
+    text-align: center;
+    padding: 5px;
+    background: #e25e00;
+}
+#my_params, #his_params {
+    float: left;
+    width: 110px;
+    padding: 5px;
+}
+#content {
+    min-height: 200px;
+    background: #f7ad45;
+    margin: 0 120px;
+    padding: 10px 10px 10px 10px;
+}
+#log {
+    min-height: 100px;
+}
+#his_params {
+    float: right;
+}
+h2 { margin: 0 0 1em; }
+
+form {
+    color: white;
+    margin: 0 20px;
+    padding-top: 15px;
+}
+
+#footer {
+    clear: both;
+    padding: 5px;
+    text-align: center;
+    color: #ffffff;
+    background: #e96e00;
+}
+
+progress {
+    background: #d35000;
+    width: 100px;
+}
+
+input {
+    margin: 10px;
+    width: 200px;
+    background-color: #d35000;
+    color: #ffffff;
+    font-size: 30px;
+}
+
+.menu {
+    font-size: 40px;
+    text-align: center;
+    padding: 10px;
+    color: #e25e00;
+}
+
+a {
+    color: #e25e00;
+}
+a:visited {
+    color: #e25e00;
+}
+
+a:active {
+    color: #ffffff;
+}
+

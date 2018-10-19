@@ -1,12 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>All About Markup</title>
+    <title>HTML-game</title>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="5; url=/duel">
+    <meta http-equiv="refresh" content="30; url=/duel">
+    <link href="public/game.css" rel="stylesheet">
 </head>
 <body>
-Битва начнется через 5 секунд. Ваш противник ${enemy_name}.
-<br> ${statistics}
+<div id="container">
+    <div id="header">Соперник найден...</div>
+    <div id="my_params" class="params">
+        <img src="public/1.png">
+        <br> Я:
+        <br> Имя: ${my_name}
+        <br> Здоровье: ${my_life}
+        <br> Урон: ${my_damage}
+        <br> Рейтинг: ${my_rating}
+    </div>
+    <div id="his_params" class="params">
+        <img src="public/1.png">
+        <br> Соперник:
+        <br> Имя: ${his_name}
+        <br> Рейтинг: ${his_rating}
+    </div>
+    <div id="content">
+        <img src="public/clock.gif"  width="210" height="210">
+    </div>
+    <div id="footer"><br> ${statistics}</div>
+</div>
 </body>
 </html>
