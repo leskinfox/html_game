@@ -15,12 +15,10 @@ public class DBService {
         this.statistics = statistics;
         StringBuilder url = new StringBuilder();
         url.
-                append("jdbc:mysql://").                    //services.db type
-                append("localhost:").                       //host name
-                append("3306/").                            //port
-                append("html_game?").                      //services.db name
-                append("user=root&").                      //login
-                append("password=&").                     //password
+                append("jdbc:mysql://").
+                append("localhost:").
+                append("3306/").
+                append("html_game?").
                 append("useSSL=false&").
                 append("serverTimezone=UTC");
         Properties properties = new Properties();
@@ -52,15 +50,12 @@ public class DBService {
         statistics.addRequest(sessionID);
     }
 
-    public long addUser(String sessionID, String login, String password, long rating, long life, long damage) throws SQLException {
+    public void addUser(String sessionID, String login, String password, long rating, long life, long damage) throws SQLException {
         statistics.startDBTimer(sessionID);
         UsersDAO dao = new UsersDAO(connection);
         statistics.addRequest(sessionID);
         dao.insertUser(login, password, rating, life, damage);
-        statistics.addRequest(sessionID);
-        long id= dao.getUserId(login);
         statistics.stopDBTimer(sessionID);
-        return id;
     }
 
 

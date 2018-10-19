@@ -4,7 +4,6 @@ import services.Services;
 import services.players.Battle;
 import services.players.Player;
 
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

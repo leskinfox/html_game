@@ -2,14 +2,12 @@ package servlets;
 
 import services.Services;
 import services.players.Player;
-import services.players.PlayersService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
 
 public class SignOutServlet extends HttpServlet {
     private final Services services;

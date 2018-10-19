@@ -1,13 +1,9 @@
 package servlets;
 
 import services.Services;
-import services.db.DBService;
 import services.db.UsersDataSet;
 import org.apache.commons.codec.digest.DigestUtils;
 import services.players.Player;
-import services.players.PlayersService;
-import services.statistics.StatisticsService;
-import services.template.TemplateService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -16,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.Map;
 
 public class SignInServlet extends HttpServlet {
 
