@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<br> My name ${my_name}
+<br> My health ${my_health}
+<br> My damage ${my_damage}
+<br> My rating ${my_rating}
+<br>
+<br> His name ${his_name}
+<br> His health ${his_health}
+<br> His damage ${his_damage}
+<br> His rating ${his_rating}
+
+<form action="/duel" method="get">
+    <input type="hidden" name="attack">
+    <input type="submit" value="Атаковать">
+</form>
+
+<br> ${log}
+
+<br> ${statistics}
+
+
+
+
+
+</body>
+</html>
