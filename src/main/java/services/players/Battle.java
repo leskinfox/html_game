@@ -23,6 +23,7 @@ public class Battle {
         damage[0] = player1.getDamage(); damage[1] = player2.getDamage();
         fExit[0] = false; fExit[1] = false;
         log[0] = ""; log[1] = "";
+        timeStartBattle = System.currentTimeMillis();
         player1.setBattle(this);
         player2.setBattle(this);
         player1.setIdInBattle(0);
@@ -35,7 +36,7 @@ public class Battle {
 
     // id attacks id2
     public void attack(int id) {
-        if (!isGame())
+        if (isExit(id))
             return;
         int id2 = id == 0 ? 1 : 0;
         if (isDead(id)) {
@@ -60,7 +61,6 @@ public class Battle {
         int id2 = id == 0 ? 1 : 0;
         health[id] = health[id] < damage[id2] ? 0 : health[id] - damage[id2];
         log[id] += "<br>" + name[id2] + " ударил Вас " + "на " + damage[id2] + "урона";
-
     }
 
     private void win(int id) {
@@ -126,11 +126,12 @@ public class Battle {
     }
 
     public void stopGame() {
-        timeStartBattle = 0;
+        if (isExit(0) && isExit(1))
+            timeStartBattle = 0;
     }
 
     public boolean isGame() {
-        return isStartGame() && (!isExit(0) || !isExit(1));
+        return isStartGame() && !(isExit(0) && isExit(1));
     }
 
     public boolean isStartGame() {
