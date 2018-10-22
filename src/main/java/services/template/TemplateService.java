@@ -21,6 +21,7 @@ public class TemplateService {
     public TemplateService(StatisticsService statistics) {
         this.statistics = statistics;
         cfg = new Configuration(Configuration.VERSION_2_3_0);
+        cfg.setDefaultEncoding("UTF-8");
     }
 
     public String getPage(String sessionId, String filename, Map<String, String> data) {

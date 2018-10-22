@@ -5,6 +5,7 @@ import services.players.PlayersService;
 import services.statistics.StatisticsService;
 import services.template.TemplateService;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class Services {
@@ -19,7 +20,7 @@ public class Services {
         players = new PlayersService();
         try {
             db = new DBService(statistics);
-        } catch (SQLException e) {
+        } catch (SQLException | IOException e) {
             e.printStackTrace();
             db = null;
         }
